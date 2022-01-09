@@ -25,3 +25,5 @@ fetch('https://jsonplaceholder.typicode.com/posts')
       postArr = data.slice(0, 6)
       renderHTML()
   })
+
+  // When BTN pressed: grab values, assign values, POST values, render to HTML then clear form
