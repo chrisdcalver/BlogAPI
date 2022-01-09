@@ -27,3 +27,27 @@ fetch('https://jsonplaceholder.typicode.com/posts')
   })
 
   // When BTN pressed: grab values, assign values, POST values, render to HTML then clear form
+
+  submitBtn.addEventListener('submit', function(e) {
+      e.preventDefault()
+      const userTitle = blogTitle.value
+      const userText = blogText.value
+
+      const data = {
+          title: userTitle,
+          body: userText
+      }
+
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: "POST",
+          body: JSON.stringify(data),
+          header: {"Content-type": "application/json"}
+      }) // Fetch
+        .then(response => response.json())
+        .then(post => { // Think the error is around this line or below
+            postArr.unshift(post)
+            renderHTML()
+            userTitle.value = ''
+            userTitle.value = ''
+        }) // .then(newData..)
+  })
