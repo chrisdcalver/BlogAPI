@@ -2,6 +2,7 @@
 const blogTitle = document.getElementById('blog-title')
 const blogText = document.getElementById('blog-text')
 const submitBtn = document.getElementById('submit-btn')
+const blogForm = document.querySelector('#blog-form')
 
 // Global Variables
 let postArr = []
@@ -28,7 +29,7 @@ fetch('https://jsonplaceholder.typicode.com/posts')
 
   // When BTN pressed: grab values, assign values, POST values, render to HTML then clear form
 
-  submitBtn.addEventListener('submit', function(e) {
+  blogForm.addEventListener('submit', function(e) {
       e.preventDefault()
       const userTitle = blogTitle.value
       const userText = blogText.value
