@@ -21,34 +21,37 @@ function renderHTML() {
 
 // Get API details and put into array
 fetch('https://jsonplaceholder.typicode.com/posts')
-  .then((response) => response.json())
-  .then(data => {
-      postArr = data.slice(0, 6)
-      renderHTML()
-  })
+    .then((response) => response.json())
+    .then(data => {
+        postArr = data.slice(0, 6)
+        renderHTML()
+    })
 
-  // When BTN pressed: grab values, assign values, POST values, render to HTML then clear form
+// When BTN pressed: grab values, assign values, POST values, render to HTML then clear form
 
-  blogForm.addEventListener('submit', function(e) {
-      e.preventDefault()
-      const userTitle = blogTitle.value
-      const userText = blogText.value
+blogForm.addEventListener('submit', function(e) {
+    e.preventDefault()
+    const userTitle = blogTitle.value
+    const userText = blogText.value
 
-      const data = {
-          title: userTitle,
-          body: userText
-      }
+    const data = {
+        title: userTitle,
+        body: userText
+    }
 
-      fetch('https://jsonplaceholder.typicode.com/posts', {
-          method: "POST",
-          body: JSON.stringify(data),
-          header: {"Content-type": "application/json"}
-      }) // Fetch
-        .then(response => response.json())
-        .then(post => { // Think the error is around this line or below
-            postArr.unshift(post)
-            renderHTML()
-            userTitle.value = ''
-            userTitle.value = ''
-        }) // .then(newData..)
-  })
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: "POST",
+        body: JSON.stringify(data),
+        header: {"Content-type": "application/json"}
+    })
+        .then((response) => {
+            response.json()
+
+                .then((post) => {
+                    postArr.unshift(post)
+                    renderHTML()
+                    userTitle.value = ''
+                    userTitle.value = ''
+                })
+        })
+})
