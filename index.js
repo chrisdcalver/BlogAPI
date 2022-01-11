@@ -42,7 +42,7 @@ blogForm.addEventListener('submit', function(e) {
     fetch('https://jsonplaceholder.typicode.com/posts', {
         method: "POST",
         body: JSON.stringify(data),
-        header: {"Content-type": "application/json"}
+        headers: {"Content-type": "application/json"}
     })
         .then((response) => {
             response.json()
